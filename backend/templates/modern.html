@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ resume.personal.fullName }} Resume</title>
+    <style>
+        body { font-family: sans-serif; color: #333; line-height: 1.6; }
+        .header { border-bottom: 2px solid #2563EB; padding-bottom: 20px; margin-bottom: 30px; }
+        .name { font-size: 32px; font-weight: bold; color: #1E40AF; text-transform: uppercase; }
+        .job-title { font-size: 18px; color: #4B5563; margin-top: 5px; }
+        .contact-info { margin-top: 10px; font-size: 14px; color: #6B7280; }
+        .section { margin-bottom: 25px; }
+        .section-title { font-size: 18px; font-weight: bold; color: #1E40AF; border-bottom: 1px solid #E5E7EB; margin-bottom: 10px; padding-bottom: 5px; }
+        .content { font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="name">{{ resume.personal.fullName|default('Your Name') }}</div>
+        <div class="job-title">{{ resume.personal.jobTitle|default('Professional Title') }}</div>
+        <div class="contact-info">
+            {{ resume.personal.email }} | {{ resume.personal.phone }} | {{ resume.personal.linkedin }}
+        </div>
+    </div>
+
+    {% if resume.personal.summary %}
+    <div class="section">
+        <div class="section-title">Profile</div>
+        <div class="content">{{ resume.personal.summary }}</div>
+    </div>
+    {% endif %}
+
+    <!-- Add sections for Experience, Education, Skills here -->
+    <div class="section">
+        <div class="section-title">Experience</div>
+        <div class="content">
+            {% for exp in resume.experience %}
+                <div style="margin-bottom: 15px;">
+                    <div style="font-weight: bold;">{{ exp.title }} at {{ exp.company }}</div>
+                    <div style="font-style: italic; color: #666;">{{ exp.date }}</div>
+                    <div>{{ exp.description }}</div>
+                </div>
+            {% else %}
+                <p>No experience listed.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+python-docx
+# weasyprint  # Removed due to DLL issues
+xhtml2pdf
+jinja2
+groq
+python-dotenv
+pydantic
